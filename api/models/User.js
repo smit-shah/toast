@@ -8,24 +8,27 @@
 var bcrypt = require('bcryptjs');
 
 module.exports = {
-    attributes: {
-        email: {
-            type: 'email',
-            required: true,
-            unique: true
-        },
-        password: {
-            type: 'string',
-            minLength: 4,
-            required: true
-        },
+
+	attributes: {
+		first_name: { type: 'string', minLength: 2, maxLength: 10 },
+		last_name: 	{ type: 'string', minLength: 2, maxLength: 10 },
+		email: 		{ type: 'email',  required: true, unique: true },
+        password: 	{ type: 'string', minLength: 4, maxLength: 10, required: true },
+
         toJSON: function() {
             var obj = this.toObject();
             delete obj.password;
             return obj;
+        },
+
+        //User.find(1).populate('meta').exec(console.log)
+        meta: {
+        	collection: 'usermeta',
+        	via: 'user'
         }
-    },
-    beforeCreate: function(user, cb) {
+	},
+
+	beforeCreate: function(user, cb) {
         bcrypt.genSalt(10, function(err, salt) {
             bcrypt.hash(user.password, salt, function(err, hash) {
                 if (err) {
@@ -39,3 +42,4 @@ module.exports = {
         });
     }
 };
+
