@@ -29,6 +29,8 @@
         <link rel="stylesheet" href="/admin_theme/plugins/daterangepicker/daterangepicker-bs3.css">
         <!-- bootstrap wysihtml5 - text editor -->
         <link rel="stylesheet" href="/admin_theme/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+        <!-- Admin specific -->
+        <link rel="stylesheet" href="/styles/admin.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,10 +42,6 @@
     </head>
 
     <body class="hold-transition skin-blue sidebar-mini">
-        <%- partial ('partials/_header.ejs') %>
-        <%- partial ('partials/_left.ejs') %>
-        <%- body %>
-
         <script src="/js/dependencies/sails.io.js"></script>
         
         <!-- jQuery 2.1.4 -->
@@ -78,11 +76,18 @@
         <!-- FastClick -->
         <script src="/admin_theme/plugins/fastclick/fastclick.min.js"></script>
         
+        <%- partial ('partials/_header.ejs') %>
+        <%- partial ('partials/_left.ejs') %>
+        <div class="wrapper">
+            <%- body %>
+        </div>
+
         <!-- AdminLTE App -->
         <script src="/admin_theme/dist/js/app.min.js"></script>
         <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
         <script src="/admin_theme/dist/js/pages/dashboard.js"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="/admin_theme/dist/js/demo.js"></script>
+
     </body>
 </html>

@@ -6,6 +6,10 @@
  */
 
 module.exports = {
-	
+
+	all: function(req, res) {
+
+	}
+
 };
 

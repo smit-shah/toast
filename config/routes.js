@@ -41,13 +41,18 @@ module.exports.routes = {
 
 	'/test': 'IndexController.main',
 
-	'/get /user/dashboard': 'UserController.dashboard',
+	'/get /dashboard': 'UserController.dashboard',
 	/*'get /user/dashboard': { 
 		view: 'user/dashboard',
 		locals: { layout: 'admin' }
     },*/
-	/*'get /admin/posts': 'PostController.all',
-	'get /admin/pages': 'PageController.all',*/
+	'get /admin/posts': 'PostController.all',
+	
+	//Pages
+	'get /admin/pages': 'PageController.all',
+	'get /admin/pages/new': 'PageController.new',
+	'post /admin/pages/create': 'PageController.create',
+	'get /admin/pages/:id/edit': 'PageController.edit',
 
   /***************************************************************************
   *                                                                          *

@@ -11,7 +11,6 @@ module.exports = {
 	* `UserController.dashboard()`
 	*/
 	dashboard: function (req, res) {
-		console.log(req.session.user);
 		res.view({ user: req.session.user, layout: 'admin' });
 	}
 	
