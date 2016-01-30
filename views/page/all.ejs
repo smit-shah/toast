@@ -19,14 +19,22 @@
 							<th>Title</th>
 							<th>Status</th>
 							<th>Date</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
 						<% if (pages.length > 0) { %>
-							<% for(var i=0; i < data.length; i++) { %>
+							<% for(var i=0; i < pages.length; i++) { %>
 								<tr>
 									<td><%= pages[i].id %></td>
-									<td><%= pages[i].title %></td>
+									<td><a href="/admin/pages/<%= pages[i].id %>/edit"><%= pages[i].title %></a></td>
+									<td><%= pages[i].status %></td>
+									<td class="moment" datetime="<%= pages[i].createdAt %>"><%= pages[i].createdAt %></td>
+									<td>
+										<span class="action">
+											<a data-toggle="tooltip" title="Edit" href="/admin/pages/<%= pages[i].id %>/edit"><i class="fa fa-pencil"></i></a> | <a data-toggle="tooltip" title="Delete" href=""><i class="fa fa-trash"></i></a>
+										</span>
+									</td>
 								</tr>
 							<% } %>
 						<% } else { %>

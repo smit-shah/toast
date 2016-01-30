@@ -1,3 +1,4 @@
 img { max-width: 100%; }
 .leftSpace { margin-left: 3%; cursor: pointer; }
 #preview { margin: 2% 0; }
+.action { display: none; }

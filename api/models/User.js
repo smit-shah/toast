@@ -25,6 +25,12 @@ module.exports = {
         meta: {
         	collection: 'usermeta',
         	via: 'user'
+        },
+
+        //User.find(1).populate('media').exec(console.log)
+        media: {
+        	collection: 'media',
+        	via: 'owner'
         }
 	},
 

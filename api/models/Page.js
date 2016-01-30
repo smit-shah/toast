@@ -10,6 +10,13 @@ module.exports = {
 	attributes: {
 		title: { type: 'string' },
 		description: { type: 'text' },
-	}
+		status : { type: 'string', defaultsTo: 'draft' }, //draft, publish, trash
+	},
+	
+	toJSON: function() {
+	    var obj = this.toObject();
+	    obj.createdAt = 'sa';
+	    return obj;
+	},
 };
 
