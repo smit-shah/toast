@@ -49,6 +49,13 @@ module.exports.policies = {
       'upload': 'isAuthenticated',
   },
 
+  'PageController': {
+    'all': 'isAuthenticated',
+    'new': 'isAuthenticated',
+    'edit': 'isAuthenticated',
+    'update': 'isAuthenticated',
+  },
+
   /***************************************************************************
   *                                                                          *
   * Here's an example of mapping some policies to run before a controller    *

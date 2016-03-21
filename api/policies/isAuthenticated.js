@@ -1,7 +1,6 @@
 module.exports = function(req, res, next) {
   var url = req.url;
    if (req.session.user) {
-
       switch (url) {
           case '/admin/pages':
               req.page = 'active';
@@ -28,7 +27,6 @@ module.exports = function(req, res, next) {
               req.newUser = 'active';
               break;
       }
-
       return next();
     }
     else{
