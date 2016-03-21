@@ -29,7 +29,24 @@ module.exports.policies = {
   
 
   'UserController': {
-    'dashboard': 'isAuthenticated'
+    'dashboard': 'isAuthenticated',
+    'new': 'isAuthenticated',
+    'edit': 'isAuthenticated',
+    'delete': 'isAuthenticated',
+    'all': 'isAuthenticated',
+  },
+
+  'PageController': {
+    'all': 'isAuthenticated',
+    'new': 'isAuthenticated',
+    'edit': 'isAuthenticated',
+    'update': 'isAuthenticated',
+  },
+
+  'MediaController': {
+      'all': 'isAuthenticated',
+      'new': 'isAuthenticated',
+      'upload': 'isAuthenticated',
   },
 
   /***************************************************************************

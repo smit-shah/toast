@@ -8,31 +8,35 @@
 var passport = require('passport');
 module.exports = {
 
-	_config: {
-        actions: false,
-        shortcuts: false,
-        rest: false
-    },
-
     login: function(req, res) {
-        passport.authenticate('local', function(err, user, info) {
-            if ((err) || (!user)) {
-                return res.send({
-                    message: info.message,
-                    user: user
+        var redirection = req.param('redirect_to');
+        console.log(req.method);
+        if (req.method == 'POST') {
+            passport.authenticate('local', function(err, user, info) {
+                if ((err) || (!user)) {
+                    return res.send({
+                        message: info.message,
+                        user: user
+                    });
+                }
+                req.logIn(user, function(err) {
+                    if (err)
+                        res.send(err);
+                    
+                    User.findOne(user.id).populate('role').exec(function(err, user){
+                        req.session.user = user;
+                        if (redirection && redirection != '' && redirection != 'undefined') {
+                            console.log("redirection from AuthController: "+redirection);
+                            res.redirect(redirection);
+                        }
+                        else
+                            res.redirect('user/dashboard');
+                    });
                 });
-            }
-            req.logIn(user, function(err) {
-                if (err) res.send(err);
-                req.session.user = user;
-                res.redirect('user/dashboard');
-                /*return res.send({
-                    message: info.message,
-                    user: user
-                });*/
-            	
-            });
-        })(req, res);
+            })(req, res);
+        }
+        else
+            res.view('user/login', { redirect_to: redirection });
     },
 
     logout: function(req, res) {

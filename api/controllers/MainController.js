@@ -12,7 +12,7 @@ module.exports = {
 	*/
 	index: function (req, res) {
 		var login = req.session.user;
-    	res.view({login});
+    	res.view({ login: login });
 	}
 };
 

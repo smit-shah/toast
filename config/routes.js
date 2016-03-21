@@ -35,19 +35,33 @@ module.exports.routes = {
 	'/': 'MainController.index',
 
 	'get /signup': { view: 'signup' },
-	'get /login': { view: 'user/login' },
+	'get /login': 'AuthController.login',
 	'post /login': 'AuthController.login',
 	'/logout': 'AuthController.logout',
 
 	'/test': 'IndexController.main',
 
-	'/get /user/dashboard': 'UserController.dashboard',
+	'get /dashboard': 'UserController.dashboard',
+  'get /admin/users': 'UserController.all',
+  'get /admin/users/new': 'UserController.new',
+  'get /admin/users/:id/edit': 'UserController.edit',
+  'get /admin/users/me': 'UserController.myProfile',
 	/*'get /user/dashboard': { 
 		view: 'user/dashboard',
 		locals: { layout: 'admin' }
     },*/
-	/*'get /admin/posts': 'PostController.all',
-	'get /admin/pages': 'PageController.all',*/
+	'get /admin/posts': 'PostController.all',
+	
+	//Pages
+	'get /admin/pages': 'PageController.all',
+	'get /admin/pages/new': 'PageController.new',
+	'post /admin/pages/create': 'PageController.create',
+	'get /admin/pages/:id/edit': 'PageController.edit',
+
+  //Media
+  'get /admin/media': 'MediaController.all',
+  'get /admin/media/new': 'MediaController.new',
+  'post /admin/media/upload': 'MediaController.upload',
 
   /***************************************************************************
   *                                                                          *
