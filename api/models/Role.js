@@ -26,5 +26,29 @@ module.exports = {
 	    	via: 'can',
 	    	dominant: true
 	    }
-	}
+	},
+
+	beforeDestroy: function(criteria, cb) {
+		var total = 0;
+		var count = 0;
+		Role.find(criteria).populate('capabilities').exec(function(err, roles){
+			if (err) return cb(err);
+			total = roles.length;
+			roles.forEach(function(role){
+				Capability.destroy({ id: _.pluck(role.capabilities, 'id') }).exec(function(er){
+					console.log('DELETED');
+					count++;
+					_isCompleted(total, count, function(done){
+						if (done)
+							cb();
+					})
+				});
+			});
+		});
+	},
 };
+
+function _isCompleted(total, count, cb) {
+	console.log('total: '+total+ ' & count: '+count);
+	count == total ? cb(true) : cb(false);
+}
